@@ -1,14 +1,13 @@
-var models = require('models');
-var views = require('views');
+import UserCollection from 'models/user-data';
+import CreateUserView from 'views/create';
+
+
+window.App = {};
 
 $(document).ready(function(){
-  $('body').prepend(JST.application());
+  App.user = new UserCollection();
 
-  var view = new PostsView();
+  window.createUserView = new CreateUserView();
+  $('#container').append(createUserView.render().el);
 
-  $(document).on('posts:fetched', function(event, posts){
-    view.showPosts(posts);
-  });
-
-  Post.fetch();
 });
